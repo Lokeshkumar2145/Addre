@@ -6,18 +6,25 @@ class AddressBookMain:
         self.address_book = AddressBook()
 
     def add_contact_console(self):
-        print("\nEnter Contact Details:")
-        first_name = input("First Name: ")
-        last_name = input("Last Name: ")
-        address = input("Address: ")
-        city = input("City: ")
-        state = input("State: ")
-        zip_code = input("ZIP Code: ")
-        phone_number = input("Phone Number: ")
-        email = input("Email: ")
+        def inputs():
+            print("\nEnter Contact Details:")
+            first_name = input("First Name: ")
+            last_name = input("Last Name: ")
+            address = input("Address: ")
+            city = input("City: ")
+            state = input("State: ")
+            zip_code = input("ZIP Code: ")
+            phone_number = input("Phone Number: ")
+            email = input("Email: ")
+            new_contact = Contact(first_name, last_name, address, city, state, zip_code, phone_number, email)
+            self.address_book.add_contact(new_contact)
+        inputs()
+        another = input("Do you want to add another contact? (yes/no): ").strip().lower()
+        
+        while another == "yes":
+            inputs()
+            another = input("Do you want to add another contact? (yes/no): ").strip().lower()
 
-        new_contact = Contact(first_name, last_name, address, city, state, zip_code, phone_number, email)
-        self.address_book.add_contact(new_contact)
 
     def edit_contact_console(self):
         print("\nEnter Details of the Contact to be Edited of Existing contact of first name:")
