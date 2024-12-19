@@ -4,6 +4,7 @@ from addressbook import AddressBook
 # Create an AddressBook object
 address_book = AddressBook()
 
+
 # Add contacts
 contact1 = Contact("lokesh", "kumar", "HSR", "Bangalore", "KA", "560102", "9876543211", "lokesh@gmail.com")
 contact2 = Contact("ram", "mohan", "BTM", "Bangalore", "KA", "560068", "9876543210", "ram@gmail.com")
