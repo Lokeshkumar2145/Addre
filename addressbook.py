@@ -6,3 +6,10 @@ class AddressBook:
         self.contacts.append(contact)
         print(f"Contact added successfully: {contact}")
         
+    def edit_contact(self, first_name, updated_contact):
+        for index, contact in enumerate(self.contacts):
+            if contact.first_name == first_name:
+                self.contacts[index] = updated_contact
+                return True
+        return False
+
