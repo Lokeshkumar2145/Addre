@@ -19,4 +19,11 @@ class AddressBook:
                 self.contacts.remove(contact)
                 return True
         return False
+    
+    def view_contacts(self):
+        if not self.contacts:
+            print("No contacts found.")
+        else:
+            for contact in self.contacts:
+                print(contact)
 

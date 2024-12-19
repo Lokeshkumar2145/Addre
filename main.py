@@ -47,8 +47,9 @@ class AddressBookMain:
             print("\n=== Address Book Menu ===")
             print("1. Add Contact")
             print("2. Edit Contact")
-            print("3. delete Contact")
-            print("4. Exit")
+            print("3. Delete Contact")
+            print("4. View Contact")
+            print("5. Exit")
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -58,6 +59,8 @@ class AddressBookMain:
             elif choice == "3":
                 self.delete_contact_console()
             elif choice == "4":
+                self.address_book.view_contacts()
+            elif choice == "5":
                 print("Exiting Address Book. Goodbye!")
                 break
             else:
