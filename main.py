@@ -1,31 +1,39 @@
-from contact import Contact
 from addressbook import AddressBook
+from contact import Contact
 
-# Create an AddressBook object
-address_book = AddressBook()
+class AddressBookMain:
+    def __init__(self):
+        self.address_book = AddressBook()
 
+    def add_contact_console(self):
+        print("\nEnter Contact Details:")
+        first_name = input("First Name: ")
+        last_name = input("Last Name: ")
+        address = input("Address: ")
+        city = input("City: ")
+        state = input("State: ")
+        zip_code = input("ZIP Code: ")
+        phone_number = input("Phone Number: ")
+        email = input("Email: ")
 
-# Add contacts
-contact1 = Contact("lokesh", "kumar", "HSR", "Bangalore", "KA", "560102", "9876543211", "lokesh@gmail.com")
-contact2 = Contact("ram", "mohan", "BTM", "Bangalore", "KA", "560068", "9876543210", "ram@gmail.com")
-address_book.add_contact(contact1)
-address_book.add_contact(contact2)
+        new_contact = Contact(first_name, last_name, address, city, state, zip_code, phone_number, email)
+        self.address_book.add_contact(new_contact)
 
-# View contacts
-print("Contacts:")
-address_book.view_contacts()
+    def display_menu(self):
+        while True:
+            print("\n=== Address Book Menu ===")
+            print("1. Add Contact")
+            print("2. Exit")
+            choice = input("Enter your choice: ")
 
-# Edit a contact
-updated_contact = Contact("eran", "goud", "HSR", "Bangalore", "KA", "560069", "9123456789", "eran@gmail.com")
-address_book.edit_contact("ram", updated_contact)
+            if choice == "1":
+                self.add_contact_console()
+            elif choice == "2":
+                print("Exiting Address Book. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
 
-# View contacts after editing
-print("\nUpdated Contacts:")
-address_book.view_contacts()
-
-# Delete a contact
-address_book.delete_contact("eran")
-
-# View contacts after deletion
-print("\nContacts After Deletion:")
-address_book.view_contacts()
+if __name__ == "__main__":
+    app = AddressBookMain()
+    app.display_menu()
