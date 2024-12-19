@@ -33,6 +33,13 @@ class AddressBookMain:
         updated_contact=Contact(first_name, last_name, address, city, state, zip_code, phone_number, email)
         self.address_book.edit_contact(first_name, updated_contact)
         print("\nContacts Edited successfully !!")
+    
+    def delete_contact_console(self):
+        print("\nEnter the name of the contact to be deleted!!")
+        first_name = input("First Name: ")
+        self.address_book.delete_contact(first_name)
+        print("\nContacts deleted successfully !!")
+
 
 
     def display_menu(self):
@@ -40,7 +47,8 @@ class AddressBookMain:
             print("\n=== Address Book Menu ===")
             print("1. Add Contact")
             print("2. Edit Contact")
-            print("3. Exit")
+            print("3. delete Contact")
+            print("4. Exit")
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -48,6 +56,8 @@ class AddressBookMain:
             elif choice == "2":
                 self.edit_contact_console()
             elif choice == "3":
+                self.delete_contact_console()
+            elif choice == "4":
                 print("Exiting Address Book. Goodbye!")
                 break
             else:

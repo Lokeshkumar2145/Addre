@@ -12,4 +12,11 @@ class AddressBook:
                 self.contacts[index] = updated_contact
                 return True
         return False
+    
+    def delete_contact(self, first_name):
+        for contact in self.contacts:
+            if contact.first_name == first_name:
+                self.contacts.remove(contact)
+                return True
+        return False
 
