@@ -1,5 +1,8 @@
+from collections import defaultdict
 class AddressBook:
     def __init__(self):
+        self.city_map = defaultdict(list)
+        self.state_map = defaultdict(list)
         self.contacts = []
 
     def is_duplicate(self, first_name, last_name):
@@ -17,6 +20,13 @@ class AddressBook:
         for index, contact in enumerate(self.contacts):
             if contact.first_name == first_name:
                 self.contacts[index] = updated_contact
+                old_city = contact.city
+                old_state = contact.state
+                self.contacts[index] = updated_contact
+                self.city_map[old_city].remove(contact)
+                self.state_map[old_state].remove(contact)
+                self.city_map[updated_contact.city].append(updated_contact)
+                self.state_map[updated_contact.state].append(updated_contact)
                 return True
         return False
     
