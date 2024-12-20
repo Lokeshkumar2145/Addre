@@ -108,13 +108,30 @@ class AddressBookSystem:
             for name in self.address_books.keys():
                 print(f"- {name}")
 
+    def search_person_across_books(self):
+        search_city = input("\nEnter the city to search for contacts (leave blank to skip): ").strip()
+        search_state = input("Enter the state to search for contacts (leave blank to skip): ").strip()
+
+        results = []
+        for name, address_book in self.address_books.items():
+            matches = address_book.search_by_city_or_state(city=search_city, state=search_state)
+            results.extend([(name, contact) for contact in matches])
+
+        if results:
+            print("\nSearch Results:")
+            for book_name, contact in results:
+                print(f"[Address Book: {book_name}] {contact}")
+        else:
+            print("\nNo matching contacts found.")
+
     def display_menu(self):
         while True:
             print("\n=== Address Book System Menu ===")
             print("1. Add New Address Book")
             print("2. Manage Existing Address Book")
-            print("3. View All Address Books")
-            print("4. Exit")
+            print("3. Search Person across Address Book")
+            print("4. View All Address Books")
+            print("5. Exit")
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -122,8 +139,10 @@ class AddressBookSystem:
             elif choice == "2":
                 self.manage_address_book()
             elif choice == "3":
-                self.view_all_address_books()
+                self.search_person_across_books()
             elif choice == "4":
+                self.view_all_address_books()
+            elif choice == "5":
                 print("Exiting Address Book System. Goodbye!")
                 break
             else:

@@ -33,4 +33,8 @@ class AddressBook:
         else:
             for contact in self.contacts:
                 print(contact)
+    
+    def search_by_city_or_state(self, city=None, state=None):
+        results = [contact for contact in self.contacts if (city and contact.city == city) or (state and contact.state == state)] #list comprehension
+        return results
 
