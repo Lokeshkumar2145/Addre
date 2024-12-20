@@ -2,9 +2,16 @@ class AddressBook:
     def __init__(self):
         self.contacts = []
 
+    def is_duplicate(self, first_name, last_name):
+        return any(contact.first_name == first_name and contact.last_name == last_name for contact in self.contacts)
+
     def add_contact(self, contact):
+        if self.is_duplicate(contact.first_name, contact.last_name):
+            print(f"Duplicate entry: {contact.first_name} {contact.last_name} already exists.")
+            return False
         self.contacts.append(contact)
         print(f"Contact added successfully: {contact}")
+        return True
         
     def edit_contact(self, first_name, updated_contact):
         for index, contact in enumerate(self.contacts):
