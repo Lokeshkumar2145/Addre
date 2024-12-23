@@ -113,14 +113,23 @@ class AddressBookSystem:
         search_state = input("Enter the state to search for contacts (leave blank to skip): ").strip()
 
         results = []
+        total_city_count = 0
+        total_state_count = 0
         for name, address_book in self.address_books.items():
-            matches = address_book.search_by_city_or_state(city=search_city, state=search_state)
+            matches, city_count, state_count = address_book.search_by_city_or_state(city=search_city, state=search_state)
             results.extend([(name, contact) for contact in matches])
+            total_city_count += city_count
+            total_state_count += state_count
 
         if results:
             print("\nSearch Results:")
             for book_name, contact in results:
                 print(f"[Address Book: {book_name}] {contact}")
+            
+            if search_city:
+                print(f"\nTotal contacts in city '{search_city}': {total_city_count}")
+            if search_state:
+                print(f"Total contacts in state '{search_state}': {total_state_count}")
         else:
             print("\nNo matching contacts found.")
 

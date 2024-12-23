@@ -13,6 +13,8 @@ class AddressBook:
             print(f"Duplicate entry: {contact.first_name} {contact.last_name} already exists.")
             return False
         self.contacts.append(contact)
+        self.city_map[contact.city].append(contact)
+        self.state_map[contact.state].append(contact)
         print(f"Contact added successfully: {contact}")
         return True
         
@@ -45,6 +47,19 @@ class AddressBook:
                 print(contact)
     
     def search_by_city_or_state(self, city=None, state=None):
-        results = [contact for contact in self.contacts if (city and contact.city == city) or (state and contact.state == state)] #list comprehension
-        return results
+        results = []
+        city_count = 0
+        state_count = 0
+
+        if city:
+            city_contacts = self.city_map.get(city, [])
+            results.extend(city_contacts)
+            city_count = len(city_contacts)
+        
+        if state:
+            state_contacts = self.state_map.get(state, [])
+            results.extend(state_contacts)
+            state_count = len(state_contacts)
+        
+        return results, city_count, state_count
 
