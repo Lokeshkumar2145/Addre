@@ -52,6 +52,12 @@ class AddressBookSystem:
             elif choice == "5":
                 address_book.sort_contacts_by_name()
             elif choice == "6":
+                file_name = input("Enter the file name to save to: ").strip()
+                address_book.save_to_file(file_name)
+            elif choice == "7":
+                file_name = input("Enter the file name to load from: ").strip()
+                address_book.load_from_file(file_name)
+            elif choice == "8":
                 break
             else:
                 print("Invalid choice. Please try again.")

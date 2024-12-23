@@ -1,5 +1,9 @@
 from collections import defaultdict
 from operator import attrgetter
+import json
+from contact import Contact
+
+
 class AddressBook:
     def __init__(self):
         self.city_map = defaultdict(list)
@@ -73,3 +77,23 @@ class AddressBook:
             print("\nContacts sorted alphabetically by name:")
             for contact in sorted_contacts:
                 print(contact)
+        def save_to_file(self, file_name):
+            try:
+                with open(file_name, 'w') as file:
+                    # Convert contact objects to dictionaries and write to file
+                    json.dump([contact.__dict__ for contact in self.contacts], file, indent=4)
+                print(f"Address book saved to {file_name}")
+            except Exception as e:
+                print(f"Error saving address book: {e}")
+
+    def load_from_file(self, file_name):
+        try:
+            with open(file_name, 'r') as file:
+                # Load JSON data and recreate contact objects
+                data = json.load(file)
+                self.contacts = [Contact(**contact_data) for contact_data in data]
+            print(f"Address book loaded from {file_name}")
+        except FileNotFoundError:
+            print(f"File {file_name} not found. Starting with an empty address book.")
+        except Exception as e:
+            print(f"Error loading address book: {e}")
