@@ -37,7 +37,8 @@ class AddressBookSystem:
             print("2. Edit Contact")
             print("3. Delete Contact")
             print("4. View All Contacts")
-            print("5. Back to Main Menu")
+            print("5. Sort Contacts by Name")
+            print("6. Back to Main Menu")
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -49,6 +50,8 @@ class AddressBookSystem:
             elif choice == "4":
                 address_book.view_contacts()
             elif choice == "5":
+                address_book.sort_contacts_by_name()
+            elif choice == "6":
                 break
             else:
                 print("Invalid choice. Please try again.")

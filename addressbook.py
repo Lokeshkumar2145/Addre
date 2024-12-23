@@ -1,4 +1,5 @@
 from collections import defaultdict
+from operator import attrgetter
 class AddressBook:
     def __init__(self):
         self.city_map = defaultdict(list)
@@ -63,3 +64,12 @@ class AddressBook:
         
         return results, city_count, state_count
 
+    def sort_contacts_by_name(self):
+        if not self.contacts:
+            print("No contacts available to sort.")
+        else:
+            # Sort contacts alphabetically by first and last name
+            sorted_contacts = sorted(self.contacts, key=attrgetter('first_name', 'last_name'))
+            print("\nContacts sorted alphabetically by name:")
+            for contact in sorted_contacts:
+                print(contact)
