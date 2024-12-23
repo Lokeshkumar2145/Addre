@@ -38,7 +38,9 @@ class AddressBookSystem:
             print("3. Delete Contact")
             print("4. View All Contacts")
             print("5. Sort Contacts by Name")
-            print("6. Back to Main Menu")
+            print("6. Save a Contact in a file")
+            print("7. Load a Contact from a file")
+            print("8. Back to Main Menu")
             choice = input("Enter your choice: ")
 
             if choice == "1":
